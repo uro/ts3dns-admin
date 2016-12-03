@@ -1,0 +1,45 @@
+version: '2'
+
+services:
+    db_ts3dns-admin:
+        image: mysql:5.7
+        volumes:
+            - mysql-data-ts3dns-admin:/var/lib/mysql
+        restart: always
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: ts3dns_admin
+            MYSQL_DATABASE: ts3dns_admin
+            MYSQL_USER: ts3dns_admin
+            MYSQL_PASSWORD: ts3dns_admin
+
+    php_ts3dns-admin:
+        depends_on:
+            - db_ts3dns-admin
+        build: docker/php
+        restart: always
+        volumes:
+            - ./:/var/www/html
+            - ./docker/logs/php/:/var/log/php-fpm
+        links:
+            - db_ts3dns-admin
+
+    nginx_ts3dns-admin:
+        depends_on:
+            - php_ts3dns-admin
+        image: nginx:latest
+        restart: always
+        links:
+            - php_ts3dns-admin
+        volumes_from:
+            - php_ts3dns-admin
+        volumes:
+            - ./docker/nginx/:/etc/nginx/conf.d/
+            - ./docker/logs/nginx/:/var/log/nginx
+        ports:
+            - "80:80"
+
+volumes:
+    mysql-data-ts3dns-admin:
+        driver: local
