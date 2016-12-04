@@ -1,0 +1,9 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+    {% if object.lastUsed == 0 %}
+        <span class="label label-default">Address was never used</span>
+    {% else %}
+        {{ object.lastUsed|date }}
+    {% endif %}
+{% endblock %}

@@ -22,35 +22,35 @@ class Record
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(name="hostname", type="string", length=100, unique=true)
      */
     private $hostname;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(name="ipaddress", type="string", length=100)
      */
     private $ipAddress;
 
     /**
      * @var bool
      *
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(name="enabled", type="boolean")
      */
     private $isEnabled;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(name="lastused", type="integer", nullable=true)
      */
     private $lastUsed = null;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="usecount", type="integer")
      */
     private $useCount = 0;
 

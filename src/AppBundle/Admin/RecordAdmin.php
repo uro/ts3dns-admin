@@ -15,8 +15,7 @@ class RecordAdmin extends AbstractAdmin
         $formMapper
             ->add('hostname', 'text')
             ->add('ipAddress')
-            ->add('isEnabled')
-        ;
+            ->add('isEnabled');
 
     }
 
@@ -27,8 +26,7 @@ class RecordAdmin extends AbstractAdmin
             ->add('ipAddress')
             ->add('isEnabled')
             ->add('lastUsed')
-            ->add('useCount')
-        ;
+            ->add('useCount');
     }
 
     protected function configureListFields(ListMapper $listMapper)
@@ -36,9 +34,18 @@ class RecordAdmin extends AbstractAdmin
         $listMapper
             ->add('hostname')
             ->add('ipAddress')
-            ->add('isEnabled')
-            ->add('lastUsed')
+            ->add('isEnabled', null, [
+                'editable' => true
+            ])
+            ->add('lastUsed', null, [
+                'template' => 'AppBundle:CRUD:timestamp_as_datetime_field.html.twig'
+            ])
             ->add('useCount')
-        ;
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'edit' => array(),
+                    'delete' => []
+                )
+            ));
     }
 }

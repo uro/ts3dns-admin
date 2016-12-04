@@ -73,6 +73,11 @@ sonata_block:
         # enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts: [admin]
+
+sonata_admin:
+    title: "ts3dns admin"
+    title_logo: bundles/app/apple-touch-icon.png
+    show_mosaic_button: false
 #    security:
 #        handler: sonata.admin.security.handler.role
 
