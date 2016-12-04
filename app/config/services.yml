@@ -12,3 +12,9 @@ services:
         arguments: [~, AppBundle\Entity\Record, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: "Host managment",label: Records }
+
+    admin.user:
+        class: AppBundle\Admin\UserAdmin
+        arguments: [~, AppBundle\Entity\User, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "User managment",label: Users }

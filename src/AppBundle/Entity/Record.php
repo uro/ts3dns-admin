@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="records")
+ * @ORM\Table(name="jtsdns")
  */
 class Record
 {
